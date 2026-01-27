@@ -22,9 +22,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </div>
                 <div>
                   <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    CA Monk Blog
+                    Pentink Blog
                   </h1>
-                  <p className="text-xs text-gray-500">Finance • Accounting • Career</p>
+                  <p className="text-xs text-gray-500">Share highly valued insights</p>
                 </div>
               </Link>
               
@@ -86,7 +86,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <BookOpen className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900">CA Monk Blog</h2>
+                  <h2 className="text-lg font-bold text-gray-900">Pentink Blog</h2>
                   <p className="text-sm text-gray-600">Professional Insights</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
 
           <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600 text-sm">
-            <p>© 2024 CA Monk Blog. All rights reserved.</p>
+            <p>© 2025 Pentink Blog. All rights reserved.</p>
           </div>
         </div>
       </footer>
