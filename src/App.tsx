@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import BlogList from './components/BlogList'
+import HomePage from './components/HomePage.jsx'
 import BlogDetail from './components/BlogDetail'
 import CreateBlog from './components/CreateBlog'
 import Layout from './components/Layout'
@@ -21,7 +21,7 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/" element={<BlogList />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/create" element={<CreateBlog />} />
           </Routes>

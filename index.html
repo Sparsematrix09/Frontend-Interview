@@ -4,16 +4,24 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CA Monk Blog Application</title>
+    <title>CA Monk Blog - Finance & Accounting Insights</title>
     <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: ["class"],
         theme: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Source Serif Pro', 'Georgia', 'serif'],
+          },
           container: {
             center: true,
-            padding: "2rem",
+            padding: "1rem",
             screens: {
               "2xl": "1400px",
             },
@@ -84,7 +92,7 @@
         --border: 214.3 31.8% 91.4%;
         --input: 214.3 31.8% 91.4%;
         --ring: 222.2 84% 4.9%;
-        --radius: 0.5rem;
+        --radius: 0.75rem;
       }
 
       .dark {
@@ -116,6 +124,11 @@
       body {
         background-color: hsl(var(--background));
         color: hsl(var(--foreground));
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      .prose {
+        font-family: 'Source Serif Pro', Georgia, serif;
       }
     </style>
   </head>
