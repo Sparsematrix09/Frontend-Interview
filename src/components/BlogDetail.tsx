@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useParams, Link } from 'react-router-dom'
-import { Calendar, Clock, Tag, ArrowLeft, Share2, BookOpen, Award } from 'lucide-react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Calendar, Clock, Tag, ArrowLeft, Share2, BookOpen, User, Facebook, Twitter, Linkedin, Bookmark } from 'lucide-react'
 
 interface Blog {
   id: number
@@ -15,6 +15,7 @@ interface Blog {
 
 const BlogDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
 
   const { data: blog, isLoading, error } = useQuery<Blog>({
     queryKey: ['blog', id],
@@ -38,16 +39,18 @@ const BlogDetail: React.FC = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto p-4">
+        <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse">
-            <div className="h-12 bg-gray-200 rounded-lg w-32 mb-8"></div>
+            <div className="h-8 bg-gray-200 rounded w-32 mb-8"></div>
             <div className="h-96 bg-gray-200 rounded-2xl mb-8"></div>
-            <div className="h-10 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
-            <div className="space-y-4">
-              <div className="h-4 bg-gray-200 rounded"></div>
-              <div className="h-4 bg-gray-200 rounded"></div>
-              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div className="max-w-3xl mx-auto">
+              <div className="h-10 bg-gray-200 rounded w-3/4 mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
+              <div className="space-y-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-4 bg-gray-200 rounded"></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -60,13 +63,13 @@ const BlogDetail: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md text-center">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Award className="h-8 w-8 text-red-600" />
+            <BookOpen className="h-8 w-8 text-red-600" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Error loading article</h2>
           <p className="text-gray-600 mb-6">{(error as Error).message}</p>
           <Link 
             to="/" 
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
           >
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Articles</span>
@@ -87,7 +90,7 @@ const BlogDetail: React.FC = () => {
           <p className="text-gray-600 mb-6">The article you're looking for doesn't exist.</p>
           <Link 
             to="/" 
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
           >
             <ArrowLeft className="h-5 w-5" />
             <span>Browse All Articles</span>
@@ -98,120 +101,185 @@ const BlogDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-6xl mx-auto p-4">
-        <Link 
-          to="/" 
-          className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium mb-8"
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <div className="container mx-auto px-4 py-6">
+        <button
+          onClick={() => navigate('/')}
+          className="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 font-medium"
         >
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Articles</span>
-        </Link>
+        </button>
+      </div>
 
-        <article className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          {/* Hero Image */}
-          <div className="relative h-64 md:h-96 overflow-hidden">
-            <img 
-              src={blog.coverImage} 
-              alt={blog.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8">
-              <div className="flex items-center space-x-4 mb-4">
-                <span className="px-4 py-1.5 bg-blue-600 text-white text-sm font-semibold rounded-full uppercase tracking-wider">
-                  {blog.category[0]}
-                </span>
-                <span className="text-white/90 text-sm">{formatDate(blog.date)}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+      {/* Hero Section */}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent h-64"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <span className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-full inline-block mb-4">
+                {blog.category[0]}
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 {blog.title}
               </h1>
-            </div>
-          </div>
-
-          <div className="p-6 md:p-8 lg:p-12">
-            {/* Article Meta */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-8 border-b border-gray-200">
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center text-gray-600">
+              
+              <div className="flex flex-wrap items-center justify-center gap-6 text-gray-600 mb-8">
+                <div className="flex items-center">
+                  <User className="h-5 w-5 mr-2" />
+                  <span className="font-medium">CA Monk Author</span>
+                </div>
+                <div className="flex items-center">
+                  <Calendar className="h-5 w-5 mr-2" />
+                  <span className="font-medium">{formatDate(blog.date)}</span>
+                </div>
+                <div className="flex items-center">
                   <Clock className="h-5 w-5 mr-2" />
                   <span className="font-medium">5 min read</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <BookOpen className="h-5 w-5 mr-2" />
-                  <span className="font-medium">Featured Article</span>
-                </div>
               </div>
-              
-              <button className="flex items-center space-x-2 px-4 py-2 text-blue-600 hover:text-blue-700 font-medium border border-gray-300 rounded-lg hover:border-blue-300 transition-colors">
-                <Share2 className="h-5 w-5" />
-                <span>Share Article</span>
-              </button>
             </div>
 
-            {/* Article Content */}
-            <div className="prose prose-lg max-w-none">
-              <div className="mb-10">
-                <div className="flex items-center space-x-2 mb-4">
-                  <Tag className="h-5 w-5 text-blue-600" />
-                  <span className="font-bold text-gray-700">CATEGORY</span>
-                </div>
-                <div className="flex flex-wrap gap-2 mb-6">
+            {/* Cover Image */}
+            <div className="rounded-2xl overflow-hidden mb-12 shadow-xl">
+              <img 
+                src={blog.coverImage} 
+                alt={blog.title}
+                className="w-full h-[500px] object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Article Content */}
+      <div className="container mx-auto px-4 pb-20">
+        <div className="max-w-3xl mx-auto">
+          {/* Meta Info Table */}
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-12 border border-blue-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <div className="text-sm text-gray-600 font-medium mb-2">CATEGORY</div>
+                <div className="flex flex-wrap gap-2">
                   {blog.category.map((cat) => (
                     <span 
                       key={cat} 
-                      className="px-4 py-2 bg-blue-50 text-blue-700 font-medium rounded-lg"
+                      className="px-3 py-1.5 bg-white text-blue-600 font-semibold rounded-lg text-sm"
                     >
                       {cat}
                     </span>
                   ))}
                 </div>
-
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100 mb-8">
-                  <p className="text-xl text-gray-700 italic leading-relaxed">
-                    "{blog.description}"
-                  </p>
+              </div>
+              <div>
+                <div className="text-sm text-gray-600 font-medium mb-2">READ TIME</div>
+                <div className="text-xl font-bold text-gray-900">5 Mins</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-600 font-medium mb-2">DATE</div>
+                <div className="text-xl font-bold text-gray-900">
+                  {formatDate(blog.date).toUpperCase()}
                 </div>
-              </div>
-
-              <div className="text-gray-700 space-y-6">
-                {blog.content.split('\n').map((paragraph, index) => (
-                  <p key={index} className="text-lg leading-8">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <div className="flex flex-wrap gap-3">
-                {blog.category.map((cat) => (
-                  <span 
-                    key={cat} 
-                    className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg"
-                  >
-                    #{cat}
-                  </span>
-                ))}
               </div>
             </div>
           </div>
-        </article>
 
-        {/* Related Content */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-6 md:mb-0">
-              <h3 className="text-2xl font-bold mb-3">Ready to share your expertise?</h3>
-              <p className="text-blue-100">Join our community of finance professionals</p>
+          {/* Article Description */}
+          <div className="prose prose-lg max-w-none mb-12">
+            <div className="text-2xl text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-500 pl-6 italic">
+              {blog.description}
             </div>
+
+            {/* Main Content */}
+            <div className="space-y-6">
+              {blog.content.split('\n\n').map((paragraph, index) => (
+                <div key={index}>
+                  {index === 0 && (
+                    <h2 className="text-3xl font-bold text-gray-900 mb-6">{blog.title}</h2>
+                  )}
+                  {index === 1 && (
+                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-xl mb-6">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-2xl font-bold">Share Article</h3>
+                        <div className="flex items-center space-x-4">
+                          <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30">
+                            <Facebook className="h-5 w-5" />
+                          </button>
+                          <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30">
+                            <Twitter className="h-5 w-5" />
+                          </button>
+                          <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30">
+                            <Linkedin className="h-5 w-5" />
+                          </button>
+                          <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30">
+                            <Bookmark className="h-5 w-5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {paragraph}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex items-center mb-4">
+              <Tag className="h-5 w-5 text-gray-400 mr-2" />
+              <span className="font-semibold text-gray-900">Tags</span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {blog.category.map((cat) => (
+                <span 
+                  key={cat} 
+                  className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
+                >
+                  #{cat.toLowerCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Author Bio */}
+          <div className="mt-12 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
+            <div className="flex items-start space-x-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <User className="h-8 w-8 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">About the Author</h3>
+                <p className="text-gray-600 mb-4">
+                  Expert financial analyst with 10+ years of experience in fintech and accounting.
+                  Passionate about simplifying complex financial concepts for professionals.
+                </p>
+                <div className="flex items-center space-x-4">
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                    Follow
+                  </button>
+                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
+                    View Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+            <h3 className="text-2xl font-bold mb-4">Ready to share your expertise?</h3>
+            <p className="text-blue-100 mb-6">Join our community of finance professionals</p>
             <Link 
               to="/create" 
-              className="px-8 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+              className="inline-flex items-center space-x-2 px-8 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Write an Article
+              <BookOpen className="h-5 w-5" />
+              <span>Write an Article</span>
             </Link>
           </div>
         </div>

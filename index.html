@@ -130,6 +130,58 @@
       .prose {
         font-family: 'Source Serif Pro', Georgia, serif;
       }
+      /* Add this to your existing styles */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.prose {
+  color: #374151;
+}
+
+.prose p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  line-height: 1.75;
+}
+
+.prose h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
     </style>
   </head>
   <body>

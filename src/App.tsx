@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import HomePage from './components/HomePage.jsx'
+import HomePage from './components/HomePage'
 import BlogDetail from './components/BlogDetail'
 import CreateBlog from './components/CreateBlog'
 import Layout from './components/Layout'
@@ -9,7 +9,7 @@ import Layout from './components/Layout'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
       retry: 1,
     },
   },
