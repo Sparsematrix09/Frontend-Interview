@@ -52,14 +52,12 @@ const BlogDetail: React.FC = () => {
     }
     
     if (platform === 'native' && navigator.share) {
-      // Native share dialog (mobile devices)
       navigator.share({
         title,
         text,
         url
       })
     } else if (shareUrls[platform as keyof typeof shareUrls]) {
-      // Open social media sharing URL
       window.open(
         shareUrls[platform as keyof typeof shareUrls], 
         '_blank', 
@@ -75,7 +73,6 @@ const BlogDetail: React.FC = () => {
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error('Failed to copy:', err)
-      // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = window.location.href
       document.body.appendChild(textArea)
@@ -153,7 +150,6 @@ const BlogDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
       <div className="container mx-auto px-4 py-6">
         <button
           onClick={() => navigate('/')}
@@ -164,7 +160,6 @@ const BlogDetail: React.FC = () => {
         </button>
       </div>
 
-      {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent h-64"></div>
         <div className="container mx-auto px-4 relative">
@@ -193,7 +188,6 @@ const BlogDetail: React.FC = () => {
               </div>
             </div>
 
-            {/* Cover Image */}
             <div className="rounded-2xl overflow-hidden mb-12 shadow-xl">
               <img 
                 src={blog.coverImage} 
@@ -205,10 +199,8 @@ const BlogDetail: React.FC = () => {
         </div>
       </div>
 
-      {/* Article Content */}
       <div className="container mx-auto px-4 pb-20">
         <div className="max-w-3xl mx-auto">
-          {/* Meta Info Table */}
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-12 border border-blue-100">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
@@ -237,7 +229,6 @@ const BlogDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Share Section */}
           <div className="mb-12">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold text-gray-900">Share Article</h3>
@@ -247,7 +238,6 @@ const BlogDetail: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
-              {/* Native Share (Mobile) */}
               {navigator.share && (
                 <button 
                   onClick={() => shareArticle('native')}
@@ -259,7 +249,6 @@ const BlogDetail: React.FC = () => {
                 </button>
               )}
               
-              {/* Twitter */}
               <button 
                 onClick={() => shareArticle('twitter')}
                 className="flex flex-col items-center justify-center p-4 bg-[#1DA1F2] text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -269,7 +258,6 @@ const BlogDetail: React.FC = () => {
                 <span className="text-sm font-medium">Twitter</span>
               </button>
               
-              {/* WhatsApp */}
               <button 
                 onClick={() => shareArticle('whatsapp')}
                 className="flex flex-col items-center justify-center p-4 bg-[#25D366] text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -279,7 +267,6 @@ const BlogDetail: React.FC = () => {
                 <span className="text-sm font-medium">WhatsApp</span>
               </button>
               
-              {/* LinkedIn */}
               <button 
                 onClick={() => shareArticle('linkedin')}
                 className="flex flex-col items-center justify-center p-4 bg-[#0077B5] text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -289,7 +276,6 @@ const BlogDetail: React.FC = () => {
                 <span className="text-sm font-medium">LinkedIn</span>
               </button>
               
-              {/* Facebook */}
               <button 
                 onClick={() => shareArticle('facebook')}
                 className="flex flex-col items-center justify-center p-4 bg-[#1877F2] text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -299,7 +285,6 @@ const BlogDetail: React.FC = () => {
                 <span className="text-sm font-medium">Facebook</span>
               </button>
               
-              {/* Copy Link */}
               <button 
                 onClick={copyToClipboard}
                 className="flex flex-col items-center justify-center p-4 bg-gray-700 text-white rounded-xl hover:opacity-90 transition-opacity relative"
@@ -315,7 +300,6 @@ const BlogDetail: React.FC = () => {
                 </span>
               </button>
               
-              {/* Email */}
               <button 
                 onClick={() => shareArticle('email')}
                 className="flex flex-col items-center justify-center p-4 bg-red-600 text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -326,7 +310,6 @@ const BlogDetail: React.FC = () => {
               </button>
             </div>
             
-            {/* Copy Link Input */}
             <div className="mt-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Or copy this link:
@@ -358,13 +341,11 @@ const BlogDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Article Description */}
           <div className="prose prose-lg max-w-none mb-12">
             <div className="text-2xl text-gray-700 leading-relaxed mb-8 border-l-4 border-blue-500 pl-6 italic">
               {blog.description}
             </div>
 
-            {/* Main Content */}
             <div className="space-y-6">
               {blog.content.split('\n\n').map((paragraph, index) => (
                 <div key={index}>
@@ -379,7 +360,6 @@ const BlogDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Tags */}
           <div className="mt-12 pt-8 border-t border-gray-200">
             <div className="flex items-center mb-4">
               <Tag className="h-5 w-5 text-gray-400 mr-2" />
@@ -398,7 +378,6 @@ const BlogDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Author Bio */}
           <div className="mt-12 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
             <div className="flex items-start space-x-4">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -422,7 +401,6 @@ const BlogDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA */}
           <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
             <h3 className="text-2xl font-bold mb-4">Ready to share your expertise?</h3>
             <p className="text-blue-100 mb-6">Join our community of finance professionals</p>
