@@ -82,9 +82,7 @@ const CreateBlog: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Article Details Card */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-          {/* Title */}
           <div className="mb-8">
             <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wider">
               Article Title
@@ -100,7 +98,6 @@ const CreateBlog: React.FC = () => {
             />
           </div>
 
-          {/* Description */}
           <div className="mb-8">
             <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wider">
               Short Description
@@ -116,7 +113,6 @@ const CreateBlog: React.FC = () => {
             />
           </div>
 
-          {/* Cover Image */}
           <div className="mb-8">
             <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wider">
               Cover Image
@@ -157,7 +153,6 @@ const CreateBlog: React.FC = () => {
             )}
           </div>
 
-          {/* Categories */}
           <div className="mb-8">
             <div className="flex items-center space-x-2 mb-4">
               <Tag className="h-5 w-5 text-gray-400" />
@@ -198,7 +193,6 @@ const CreateBlog: React.FC = () => {
             </div>
           </div>
 
-          {/* Content */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wider">
               Article Content
@@ -215,7 +209,6 @@ const CreateBlog: React.FC = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex items-center justify-between">
           <button
             type="button"
