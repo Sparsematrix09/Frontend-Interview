@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Top Navigation */}
+      //top nav
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
@@ -76,7 +76,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer */}
+      //foter
       <footer className="mt-20 border-t border-gray-100 bg-gray-50">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
