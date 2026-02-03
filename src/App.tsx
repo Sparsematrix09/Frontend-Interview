@@ -20,7 +20,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/blog/:articleno" element={<BlogDetail />} />
             <Route path="/create" element={<CreateBlog />} />
           </Routes>
         </Layout>

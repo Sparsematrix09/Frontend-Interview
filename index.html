@@ -1,187 +1,192 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CA Monk Blog - Finance & Accounting Insights</title>
-    <!-- Tailwind CSS Play CDN -->
+    <title>Professional Insights | Finance, Tech & Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <script>
       tailwind.config = {
-        darkMode: ["class"],
         theme: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            serif: ['Source Serif Pro', 'Georgia', 'serif'],
-          },
-          container: {
-            center: true,
-            padding: "1rem",
-            screens: {
-              "2xl": "1400px",
-            },
-          },
           extend: {
             colors: {
-              border: "hsl(var(--border))",
-              input: "hsl(var(--input))",
-              ring: "hsl(var(--ring))",
-              background: "hsl(var(--background))",
-              foreground: "hsl(var(--foreground))",
-              primary: {
-                DEFAULT: "hsl(var(--primary))",
-                foreground: "hsl(var(--primary-foreground))",
-              },
-              secondary: {
-                DEFAULT: "hsl(var(--secondary))",
-                foreground: "hsl(var(--secondary-foreground))",
-              },
-              destructive: {
-                DEFAULT: "hsl(var(--destructive))",
-                foreground: "hsl(var(--destructive-foreground))",
-              },
-              muted: {
-                DEFAULT: "hsl(var(--muted))",
-                foreground: "hsl(var(--muted-foreground))",
-              },
-              accent: {
-                DEFAULT: "hsl(var(--accent))",
-                foreground: "hsl(var(--accent-foreground))",
-              },
-              popover: {
-                DEFAULT: "hsl(var(--popover))",
-                foreground: "hsl(var(--popover-foreground))",
-              },
-              card: {
-                DEFAULT: "hsl(var(--card))",
-                foreground: "hsl(var(--card-foreground))",
-              },
+              'candy-pink': '#FF69B4',
+              'green-yellow': '#FFD700',
+              'lavender-gray': '#C8B6E2',
+              'pastel-brown': '#D4B483',
+              'primary-gradient': 'linear-gradient(135deg, #FF69B4 0%, #FFD700 25%, #C8B6E2 50%, #D4B483 100%)',
             },
-            borderRadius: {
-              lg: "var(--radius)",
-              md: "calc(var(--radius) - 2px)",
-              sm: "calc(var(--radius) - 4px)",
+            fontFamily: {
+              'serif': ['Merriweather', 'serif'],
+              'sans': ['Sora', 'sans-serif'],
             },
-          },
-        },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'slide-up': 'slideUp 0.6s ease-out forwards',
+              'slide-down': 'slideDown 0.6s ease-out forwards',
+              'stagger': 'stagger 0.5s ease-out forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'grid-fade': 'gridFade 1s ease-out forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(30px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              slideDown: {
+                '0%': { transform: 'translateY(-30px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              stagger: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              gridFade: {
+                '0%': { opacity: '0' },
+                '50%': { opacity: '0.3' },
+                '100%': { opacity: '0.5' },
+              }
+            },
+            backgroundImage: {
+              'hero-gradient': 'linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(255, 215, 0, 0.1) 25%, rgba(200, 182, 226, 0.1) 50%, rgba(212, 180, 131, 0.1) 100%)',
+              'card-gradient': 'linear-gradient(135deg, #FF69B4 0%, #FFD700 25%, #C8B6E2 50%, #D4B483 100%)',
+              'accent-gradient': 'linear-gradient(90deg, #FF69B4 0%, #FFD700 50%, #C8B6E2 100%)',
+            }
+          }
+        }
       }
     </script>
+    
     <style>
       :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-        --radius: 0.75rem;
+        --candy-pink: #FF69B4;
+        --green-yellow: #FFD700;
+        --lavender-gray: #C8B6E2;
+        --pastel-brown: #D4B483;
       }
-
-      .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-      }
-
+      
       * {
-        border-color: hsl(var(--border));
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
       
       body {
-        background-color: hsl(var(--background));
-        color: hsl(var(--foreground));
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: 'Sora', sans-serif;
+        background: linear-gradient(135deg, #FFF5F7 0%, #FFFDE7 25%, #F8F4FF 50%, #F5F0E6 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Merriweather', serif;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, 
+          rgba(255, 105, 180, 0.15) 0%, 
+          rgba(255, 215, 0, 0.15) 25%, 
+          rgba(200, 182, 226, 0.15) 50%, 
+          rgba(212, 180, 131, 0.15) 100%);
+      }
+      
+      .grid-pattern {
+        background-image: 
+          linear-gradient(to right, rgba(255, 105, 180, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+      
+      .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+      .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+      .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+      .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+      .stagger-5 { animation-delay: 0.5s; opacity: 0; }
+      
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(255, 105, 180, 0.15);
+      }
+      
+      .badge-gradient {
+        background: linear-gradient(135deg, #FF69B4, #FFD700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .text-gradient {
+        background: linear-gradient(135deg, #FF69B4, #FFD700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .divider-gradient {
+        height: 3px;
+        background: linear-gradient(90deg, #FF69B4, #FFD700, #C8B6E2);
+      }
+      
+      .animate-grid-pattern {
+        animation: gridFade 1.5s ease-out forwards;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 5px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #FF69B4, #FFD700);
+        border-radius: 5px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #FF69B4, #FFD700, #C8B6E2);
       }
 
-      .prose {
-        font-family: 'Source Serif Pro', Georgia, serif;
+      ::selection {
+        background-color: rgba(255, 105, 180, 0.3);
+        color: #333;
       }
-      /* Add this to your existing styles */
-.bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.prose {
-  color: #374151;
-}
-
-.prose p {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  line-height: 1.75;
-}
-
-.prose h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-.prose h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #111827;
-  margin-top: 1.5em;
-  margin-bottom: 0.75em;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Smooth transitions */
-* {
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
+      .smooth-transition {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .category-tech { background: linear-gradient(135deg, #C8B6E2, #9B87EA); }
+      .category-finance { background: linear-gradient(135deg, #FFD700, #FFB800); }
+      .category-business { background: linear-gradient(135deg, #FF69B4, #FF3D8B); }
+      .category-development { background: linear-gradient(135deg, #87CEFA, #4682B4); }
+      .category-ai { background: linear-gradient(135deg, #98FB98, #32CD32); }
+      .category-blockchain { background: linear-gradient(135deg, #FFA07A, #FF6347); }
     </style>
   </head>
   <body>
